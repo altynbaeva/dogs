@@ -1,0 +1,153 @@
+openapi: 3.0.3
+
+info:
+  title: ecomclaims
+  version: v0
+
+components:
+  schemas:
+    Dog:
+      description: Собака (листинг)
+      type: object
+      required:
+        - id
+        - name
+        - gender
+        - age
+        - isVaccinated
+        - createdAt
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Шарик
+        gender:
+          type: string
+          example: M
+        age:
+          type: integer
+          example: 1
+        isVaccinated:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          example: "2024-12-12T12:47:40+03:00"
+        updatedAt:
+          type: string
+          example: "2024-12-15T12:47:40+03:00"
+
+    DetailedDog:
+      description: Собака (полная)
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Dog'
+        - type: object
+          properties:
+            photoURL:
+              type: string
+              example: http://vk.com/photos/1.jpeg
+            personality:
+              type: object
+              properties:
+                favoriteFood:
+                  type: array
+                  items:
+                    type: string
+    DetailedDogData:
+      description: Собака (данные для создания/обновления)
+      type: object
+      properties:
+        name:
+          type: string
+          example: Шарик
+        gender:
+          type: string
+          example: M
+        age:
+          type: integer
+          example: 1
+        isVaccinated:
+          type: boolean
+          example: true
+        photoURL:
+          type: string
+          example: http://vk.com/photos/1.jpeg
+        personality:
+          type: object
+          properties:
+            favoriteFood:
+              type: array
+              items:
+                type: string
+
+
+paths:
+  /api/v1/dogs:
+    get:
+      tags:
+        - dogs
+      description: Получить список собак.
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Dog'
+    post:
+      tags:
+        - dogs
+      description: Создать собаку.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetailedDogData'
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DetailedDog"
+
+  /api/v1/dogs/{id}:
+    get:
+      tags:
+        - dogs
+      description: Получить собаку по id.
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DetailedDog"
+        404:
+          description: Собака не найдена с таким id.
+    put:
+      tags:
+        - dogs
+      description: Обновить собаку.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DetailedDogData'
+      responses:
+        200:
+          description: Ok.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DetailedDog"
+        404:
+          description: Собака не найдена с таким id.
+

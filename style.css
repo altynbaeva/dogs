@@ -1,0 +1,42 @@
+body {
+    font-size: large;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+}
+
+td {
+  padding: 5px;
+  padding-right: 10px;
+  border: 1px solid black;
+}
+
+th {
+  padding: 10px;
+  border: 1px solid black;
+  background-color: azure;
+}
+
+tr {
+    background-color:antiquewhite;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    background: #0B63F6;
+    box-shadow: 0 5px 0 #003CC5;
+    margin-bottom: 5px;
+}
+
+button:hover {
+    background: #003CC5;
+    box-shadow: none;
+    position: relative;
+    top: 5px;
+}
+
