@@ -1,13 +1,13 @@
-let xhr = new XMLHttpRequest();
-xhr.open("GET", "http://localhost:8080/api/v1/dogs");
-xhr.send();
-xhr.onerror = function() {
+let xhrListDogs = new XMLHttpRequest();
+xhrListDogs.open("GET", "http://localhost:8080/api/v1/dogs");
+xhrListDogs.send();
+xhrListDogs.onerror = function() {
     alert('Запрос собак не удался: не удалось отправить запрос');
 };
 
-xhr.onload = function() {
-    if (xhr.status === 200) {
-        let elements = JSON.parse(xhr.responseText);
+xhrListDogs.onload = function() {
+    if (xhrListDogs.status === 200) {
+        let elements = JSON.parse(xhrListDogs.responseText);
         console.log(elements);
         
         // отрисовка строк
@@ -57,11 +57,45 @@ xhr.onload = function() {
 
                 if (j === 7) {
                     let newButton = document.createElement('button');
+                    newButton.onclick = function() {
+                        let xhrDogById = new XMLHttpRequest();
+                        xhrDogById.open('GET', 'http://localhost:8080/api/v1/dogs/'+ elements[i].id);
+                        xhrDogById.send();
+                        xhrDogById.onerror = function() {
+                            alert('Запрос собаки не удался: не удалось отправить запрос');
+                        }
+
+                        xhrDogById.onload = function() {
+                            if (xhrDogById.status === 200) {
+                                let dogCard = JSON.parse(xhrDogById.responseText);
+
+                                document.getElementById("dogsListing").hidden=true;
+                                document.getElementById("dogById").hidden=false;
+                                let cardList = document.querySelector('.card-list');
+
+                                for (let i = 0; i < 9; i++) {
+                                    let newLiElm = document.createElement('li');
+
+                                    if (i === 1) {
+                                        let newImage = document.createElement('img');
+                                        newImage.setAttribute("src", dogCard.photoURL)
+                                        newLiElm.appendChild(newImage);
+                                    }
+
+                                    cardList.appendChild(newLiElm);
+
+                                }
+
+                            } else {
+                                alert("Запрос собаки не удался: http code != 200"); 
+                            }
+                        }
+                    }
                     newCell.appendChild(newButton);
                     let newPar = document.createElement('p');
                     newPar.textContent = 'Подробнее...'
-
                     newButton.appendChild(newPar);
+
                 }
 
                 newRow.appendChild(newCell);
@@ -73,4 +107,3 @@ xhr.onload = function() {
         alert("Запрос собак не удался: http code != 200");
     }
 }
-
