@@ -150,4 +150,13 @@ paths:
                 $ref: "#/components/schemas/DetailedDog"
         404:
           description: Собака не найдена с таким id.
+    delete:
+      tags:
+        - dogs
+      description: Удалить собаку.
+      responses:
+        200:
+          description: Ok.
+        404:
+          description: Собака не найдена с таким id.
 
