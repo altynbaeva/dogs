@@ -15,6 +15,7 @@ xhrListDogs.onload = function() {
 
         for (let i = 0; i < elements.length; i++) {
             let newRow = document.createElement('tr');
+            newRow.classList.add('dogs-list-body-row');
 
             for (let j = 0; j < 8; j++) {
                 let newCell = document.createElement('td');
@@ -57,6 +58,7 @@ xhrListDogs.onload = function() {
 
                 if (j === 7) {
                     let newButton = document.createElement('button');
+                    newButton.classList.add('more-button');
                     newButton.onclick = function() {
                         let xhrDogById = new XMLHttpRequest();
                         xhrDogById.open('GET', 'http://localhost:8080/api/v1/dogs/'+ elements[i].id);
