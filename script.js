@@ -1,10 +1,10 @@
+// отрисовка листинга
 let xhrListDogs = new XMLHttpRequest();
 xhrListDogs.open("GET", "http://localhost:8080/api/v1/dogs");
 xhrListDogs.send();
 xhrListDogs.onerror = function() {
     alert('Запрос собак не удался: не удалось отправить запрос');
 };
-
 xhrListDogs.onload = function() {
     if (xhrListDogs.status === 200) {
         let elements = JSON.parse(xhrListDogs.responseText);
@@ -69,25 +69,34 @@ xhrListDogs.onload = function() {
 
                         xhrDogById.onload = function() {
                             if (xhrDogById.status === 200) {
+                                // парсим ответ
                                 let dogCard = JSON.parse(xhrDogById.responseText);
-
-                                document.getElementById("dogsListing").hidden=true;
-                                document.getElementById("dogById").hidden=false;
-                                let cardList = document.querySelector('.card-list');
-
-                                for (let i = 0; i < 9; i++) {
-                                    let newLiElm = document.createElement('li');
-
-                                    if (i === 1) {
-                                        let newImage = document.createElement('img');
-                                        newImage.setAttribute("src", dogCard.photoURL)
-                                        newLiElm.appendChild(newImage);
-                                    }
-
-                                    cardList.appendChild(newLiElm);
-
+                               
+                                // проставляем значения в карточку
+                                // TODO писать не в ячейку, а в вложенный элемент p?
+                                document.getElementById("dog-card-photo").src = dogCard.photoURL;
+                                document.getElementById("id-cell").textContent = dogCard.id;
+                                document.getElementById("name-cell").textContent = dogCard.name;
+                                document.getElementById("gender-cell").textContent = dogCard.gender;
+                                document.getElementById("age-cell").textContent = dogCard.age;
+                                if (dogCard.isVaccinated === true) {
+                                    document.getElementById("is-vaccinated-cell").textContent = 'Привит'
+                                } else {
+                                    document.getElementById("is-vaccinated-cell").textContent = 'Не привит'
                                 }
+                            
+                                document.getElementById("created-at-cell").textContent = dogCard.createdAt;
+                                if (dogCard.updatedAt === null) {
+                                    document.getElementById("updated-at-cell").textContent = 'Не заполнено'
+                                } else {
+                                    document.getElementById("updated-at-cell").textContent = dogCard.updatedAt
+                                }
+                                // TODO в столбик
+                                document.getElementById("favorite-food-cell").textContent = dogCard.personality.favoriteFood.join(','); 
 
+                                // отображаем карточку
+                                document.getElementById("dogs-listing").hidden=true;
+                                document.getElementById("dog-by-id").hidden=false;
                             } else {
                                 alert("Запрос собаки не удался: http code != 200"); 
                             }
