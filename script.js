@@ -132,16 +132,17 @@ returnButton.onclick = function() {
 let deleteButton = document.getElementById("dog-card-delete-button");
 deleteButton.onclick = function() {
     let xhrDeleteDog = new XMLHttpRequest();
-    xhrDeleteDog.open('DELETE', 'http://localhost:8080/api/v1/dogs/' + dogCard.id);
+    xhrDeleteDog.open('DELETE', 'http://localhost:8080/api/v1/dogs/' + document.getElementById("id-cell").textContent);
     xhrDeleteDog.send();
     xhrDeleteDog.onerror = function() {
-        alert('Запрос не удался: не удалось отправить запрос');
+        alert('Удаление не удалось: не удалось отправить запрос');
     }
 
     xhrDeleteDog.onload = function() {
         if (xhrDeleteDog.status === 200) {
-            alert('fffff')
+            alert('Удаление');
+        } else {
+            alert("Удаление не удалось: http code != 200");
         }
-    }
-
+    } 
 };

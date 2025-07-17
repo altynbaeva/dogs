@@ -46,14 +46,19 @@ var dogs []DogFull
 var nextDogId = 3
 
 func main() {
+	fmt.Println("preparing data")
 	prepareData()
 
+	fmt.Println("configuring endpoints")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/v1/dogs", func(writer http.ResponseWriter, request *http.Request) {
 		writer.Header().Set("Access-Control-Allow-Origin", "*")
+		writer.Header().Set("Access-Control-Allow-Methods", "*")
 		switch request.Method {
 		case http.MethodGet:
 			handleListDogsRequest(writer, request)
+		case http.MethodOptions:
+			handleOptionsRequest(writer, request)
 		case http.MethodPost:
 			handleCreateDogRequest(writer, request)
 		default:
@@ -66,11 +71,14 @@ func main() {
 	})
 	mux.HandleFunc("/api/v1/dogs/{id}", func(writer http.ResponseWriter, request *http.Request) {
 		writer.Header().Set("Access-Control-Allow-Origin", "*")
+		writer.Header().Set("Access-Control-Allow-Methods", "*")
 		switch request.Method {
 		case http.MethodGet:
 			handleGetDogRequest(writer, request)
 		case http.MethodPut:
 			handleUpdateDogRequest(writer, request)
+		case http.MethodOptions:
+			handleOptionsRequest(writer, request)
 		case http.MethodDelete:
 			handleDeleteDogRequest(writer, request)
 		default:
@@ -81,6 +89,7 @@ func main() {
 			}
 		}
 	})
+	fmt.Println("starting server on port :8080")
 	err := http.ListenAndServe(":8080", mux)
 	if err != nil {
 		panic(err)
@@ -200,6 +209,7 @@ func handleDeleteDogRequest(writer http.ResponseWriter, request *http.Request) {
 		if err != nil {
 			fmt.Println("не удалось записать ответ: " + err.Error())
 		}
+		return
 	}
 
 	for i := range dogs {
@@ -303,5 +313,10 @@ func handleUpdateDogRequest(writer http.ResponseWriter, request *http.Request) {
 	}
 
 	writer.WriteHeader(404)
+	return
+}
+
+func handleOptionsRequest(writer http.ResponseWriter, request *http.Request) {
+	writer.WriteHeader(200)
 	return
 }
