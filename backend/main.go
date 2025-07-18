@@ -132,7 +132,7 @@ func prepareData() {
 }
 
 func handleListDogsRequest(writer http.ResponseWriter, request *http.Request) {
-	var result []Dog
+	result := []Dog{}
 	for _, d := range dogs {
 		result = append(result, Dog{
 			Id:           d.Id,

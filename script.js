@@ -9,7 +9,6 @@ function drawListing() {
     xhrListDogs.onload = function() {
         if (xhrListDogs.status === 200) {
             let elements = JSON.parse(xhrListDogs.responseText);
-            console.log(elements);
             
             // отрисовка строк
             let list = document.querySelector('table');
@@ -140,7 +139,17 @@ deleteButton.onclick = function() {
 
     xhrDeleteDog.onload = function() {
         if (xhrDeleteDog.status === 200) {
-            alert('Удаление');
+            let elementsToRemove = document.querySelectorAll('.dogs-list-body-row');
+            for (let i = 0; i < elementsToRemove.length; i++) {
+                elementsToRemove[i].remove();
+            }
+            
+            drawListing();
+
+            document.getElementById('dog-by-id').hidden=true;
+            document.getElementById('dogs-listing').hidden=false;
+            
+
         } else {
             alert("Удаление не удалось: http code != 200");
         }
