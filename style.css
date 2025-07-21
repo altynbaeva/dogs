@@ -21,6 +21,22 @@ body {
   background-color: azure;
 }
 
+.create-button {
+    position: relative;
+    left: 60%;
+    bottom: 30px;
+    border-radius: 10px;
+    color: white;
+    transition: .2s linear;
+    background: #0B63F6;
+    width: 10%;
+    padding: 10px;
+}
+
+.create-button:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #3C82F8;
+}
+
 .dogs-list {
     background-color:antiquewhite;
 }
@@ -123,5 +139,39 @@ body {
     transform: rotateZ(5deg);
 }
 
+.create-dog-form {
+    width: 300px;
+    margin: 20px auto;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 3px solid black;
+}
 
+.input-field {
+   display: flex;
+   justify-content: flex-end;
+   padding: 8px;
+}
+
+label {
+    padding: 8px 16px 8px 0;
+    flex: 1;
+}
+
+input {
+    padding: 8px;
+    flex: 2;
+}
+
+.send-dog-button {
+    background: #808080;
+    color: #fff;
+    border: 5px;
+    padding: 8px;
+}
+
+.send-dog-button:hover {
+    box-shadow: #003CC5 0 0px 0px 40px inset;
+}
 

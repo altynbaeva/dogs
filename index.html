@@ -9,6 +9,7 @@
             <h1>
                 Dogs
             </h1>
+            <button id="create-dog-button" class="create-button">Создать собаку</button>
             <table class="dogs-list">
                 <tr class="dogs-list-header-row">
                     <th>№ в списке</th>
@@ -68,6 +69,57 @@
                     <button id="dog-card-delete-button" class="delete-button">Удалить</button>
                 </div>
             </div>
+        </main>
+        <main id="send-new-dog-form" hidden="true">
+            <form id="create-dog-form" class="create-dog-form">
+                <div class="input-field">
+                <label>
+                    Имя собаки:
+                    <input type="text" name="dog-name" id="dog-name" required>
+                </label>
+                </div>
+                <div class="input-field">
+                <label>
+                    Пол собаки:
+                    <input type="radio" name="dog-gender" value="М" id="dog-gender-male" required>М
+                    <input type="radio" name="dog-gender" value="Ж" id="dog-gender-female" required>Ж
+                </label>
+                </div>
+                <div class="input-field">
+                <label>
+                    Возраст собаки:
+                    <input type="number" name="dog-age" id="dog-age" min="1" max="50" step="1" required>
+                </label>
+                </div>
+                <div class="input-field">
+                <label>
+                    Вакцинация есть:
+                    <input type="checkbox" name="is-vaccinated-dog" id="is-vaccinated-dog">
+                </label>
+                </div>
+                <div class="input-field">
+                <label>
+                    Фото собаки:
+                    <input type="url" name="dog-photo" id="dog-photo" required>
+                </label>
+                </div>
+                <div class="input-field">
+                <label>
+                    Любимая еда собаки:
+                    <input type="text" name="dog-favorite-food" id="dog-favorite-food" list="food-list" required>
+                    <datalist id="food-list">
+                        <option value="Мясо"></option>
+                        <option value="Сосиски"></option>
+                        <option value="Рыба"></option>
+                        <option value="Шашлык"></option>
+                        <option value="Мороженое"></option>
+                    </datalist>
+                </label>
+                </div>
+                <div class="input-field">
+                <button id="send-button" class="send-dog-button">Отправить собаку</button>
+                </div>
+            </form>
         </main>
         <script src="script.js"></script>
     </body>

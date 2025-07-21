@@ -155,3 +155,22 @@ deleteButton.onclick = function() {
         }
     } 
 };
+
+let createButton = document.getElementById("create-dog-button");
+createButton.onclick = function() {
+    document.getElementById('dogs-listing').hidden=true;
+    document.getElementById('send-new-dog-form').hidden=false;
+};
+
+let sendButton = document.getElementById("send-button");
+sendButton.onclick = function() {
+    const form = document.getElementById("create-dog-form");
+    form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(form);
+    });
+    
+    let xhrSendDog = new XMLHttpRequest();
+    xhrSendDog.open('POST', 'http://localhost:8080/api/v1/dogs');
+    xhrSendDog.send()
+};
