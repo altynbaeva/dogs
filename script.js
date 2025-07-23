@@ -162,15 +162,45 @@ createButton.onclick = function() {
     document.getElementById('send-new-dog-form').hidden=false;
 };
 
-let sendButton = document.getElementById("send-button");
-sendButton.onclick = function() {
-    const form = document.getElementById("create-dog-form");
-    form.addEventListener('submit', function(event) {
+const form = document.getElementById("create-dog-form");
+form.onsubmit = function(event) {
     event.preventDefault();
-    const formData = new FormData(form);
-    });
-    
+        
+    const form = document.getElementById("create-dog-form");
+    let formData = new FormData(form);
+    console.log(form);
+    let requestBody = {};
+    requestBody.name = formData.get('name');
+    requestBody.gender = formData.get('gender');
+    requestBody.age = Number(formData.get('age'));
+    if (formData.get('isVaccinated') === 'on') {
+        requestBody.isVaccinated = true
+    }   else {
+        requestBody.isVaccinated = false
+    }
+    requestBody.photoURL = formData.get('photo');
+    let favFoodArr = document.getElementById('dog-favorite-food').value.split(',');
+    let personality = {
+        favoriteFood: favFoodArr
+    };
+    requestBody.personality = personality;
+    console.log(requestBody);
+
     let xhrSendDog = new XMLHttpRequest();
     xhrSendDog.open('POST', 'http://localhost:8080/api/v1/dogs');
-    xhrSendDog.send()
+    xhrSendDog.send(JSON.stringify(requestBody));
+    xhrSendDog.onerror = function() {
+        alert('Создание не удалось: не удалось отправить запрос')
+    }
+    xhrSendDog.onload = function() {
+        if (xhrSendDog.status === 200) {
+            
+                drawListing();
+                document.getElementById('send-new-dog-form').hidden=true;
+                document.getElementById('dogs-listing').hidden=false;
+            
+        }   else {
+                alert('Создание не удалось: http code != 200')
+            }
+    }
 };

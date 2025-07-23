@@ -31,35 +31,35 @@
                     <table class="dog-card-fields">
                         <tr class="dog-card-row">
                             <th>№ в списке</th>
-                            <td id="id-cell"></td>
+                            <td><span id="id-cell"></span></td>
                         </tr>
                         <tr class="dog-card-row">
                             <th>Кличка</th>
-                            <td id="name-cell"></td>
+                            <td><span id="name-cell"></span></td>
                         </tr>
                         <tr class="dog-card-row">
                             <th>Пол</th>
-                            <td id="gender-cell"></td>
+                            <td><span id="gender-cell"></span></td>
                         </tr>
                         <tr class="dog-card-row">
                             <th>Возраст</th>
-                            <td id="age-cell"></td>
+                            <td><span id="age-cell"></span></td>
                         </tr>
                         <tr class="dog-card-row">
                             <th>Вакцинация</th>
-                            <td id="is-vaccinated-cell"></td>
+                            <td><span id="is-vaccinated-cell"></span></td>
                         </tr>
                         <tr class="dog-card-row">
                             <th>Дата создания</th>
-                            <td id="created-at-cell"></td>
+                            <td><span id="created-at-cell"></span></td>
                         </tr>
                         <tr class="dog-card-row">
                             <th>Дата обновления</th>
-                            <td id="updated-at-cell"></td>
+                            <td><span id="updated-at-cell"></span></td>
                         </tr>
                         <tr class="dog-card-row">
                             <th>Любимая еда</th>
-                            <td id="favorite-food-cell"></td>
+                            <td><span id="favorite-food-cell"></span></td>
                         </tr>
                     </table>
                 </div>
@@ -75,49 +75,49 @@
                 <div class="input-field">
                 <label>
                     Имя собаки:
-                    <input type="text" name="dog-name" id="dog-name" required>
+                    <input type="text" name="name" id="dog-name" required>
                 </label>
                 </div>
                 <div class="input-field">
                 <label>
                     Пол собаки:
-                    <input type="radio" name="dog-gender" value="М" id="dog-gender-male" required>М
-                    <input type="radio" name="dog-gender" value="Ж" id="dog-gender-female" required>Ж
+                    <input type="radio" name="gender" value="М" id="dog-gender-male" required>М
+                    <input type="radio" name="gender" value="Ж" id="dog-gender-female" required>Ж
                 </label>
                 </div>
                 <div class="input-field">
                 <label>
                     Возраст собаки:
-                    <input type="number" name="dog-age" id="dog-age" min="1" max="50" step="1" required>
+                    <input type="number" name="age" id="dog-age" min="1" max="50" step="1" required>
                 </label>
                 </div>
                 <div class="input-field">
                 <label>
                     Вакцинация есть:
-                    <input type="checkbox" name="is-vaccinated-dog" id="is-vaccinated-dog">
+                    <input type="checkbox" name="isVaccinated" id="is-vaccinated-dog">
                 </label>
                 </div>
                 <div class="input-field">
                 <label>
                     Фото собаки:
-                    <input type="url" name="dog-photo" id="dog-photo" required>
+                    <input type="url" name="photo" id="dog-photo" required>
                 </label>
                 </div>
                 <div class="input-field">
-                <label>
-                    Любимая еда собаки:
-                    <input type="text" name="dog-favorite-food" id="dog-favorite-food" list="food-list" required>
-                    <datalist id="food-list">
-                        <option value="Мясо"></option>
-                        <option value="Сосиски"></option>
-                        <option value="Рыба"></option>
-                        <option value="Шашлык"></option>
-                        <option value="Мороженое"></option>
-                    </datalist>
-                </label>
+                    <label>
+                        Любимая еда собаки:
+                        <input type="text" name="favoriteFood" id="dog-favorite-food" list="food-list" required>
+                        <datalist id="food-list">
+                            <option value="Мясо"></option>
+                            <option value="Сосиски"></option>
+                            <option value="Рыба"></option>
+                            <option value="Шашлык"></option>
+                            <option value="Мороженое"></option>
+                        </datalist>
+                    </label>
                 </div>
                 <div class="input-field">
-                <button id="send-button" class="send-dog-button">Отправить собаку</button>
+                    <button id="send-button" class="send-dog-button">Отправить собаку</button>
                 </div>
             </form>
         </main>
