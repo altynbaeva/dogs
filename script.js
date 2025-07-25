@@ -1,5 +1,12 @@
 // отрисовка листинга
 function drawListing() {
+    // delete existing rows
+    let elementsToRemove = document.querySelectorAll('.dogs-list-body-row');
+    for (let i = 0; i < elementsToRemove.length; i++) {
+        elementsToRemove[i].remove();
+    }
+
+    // get and draw new rows
     let xhrListDogs = new XMLHttpRequest();
     xhrListDogs.open("GET", "http://localhost:8080/api/v1/dogs");
     xhrListDogs.send();
@@ -139,11 +146,6 @@ deleteButton.onclick = function() {
 
     xhrDeleteDog.onload = function() {
         if (xhrDeleteDog.status === 200) {
-            let elementsToRemove = document.querySelectorAll('.dogs-list-body-row');
-            for (let i = 0; i < elementsToRemove.length; i++) {
-                elementsToRemove[i].remove();
-            }
-            
             drawListing();
 
             document.getElementById('dog-by-id').hidden=true;
@@ -194,7 +196,6 @@ form.onsubmit = function(event) {
     }
     xhrSendDog.onload = function() {
         if (xhrSendDog.status === 200) {
-            
                 drawListing();
                 document.getElementById('send-new-dog-form').hidden=true;
                 document.getElementById('dogs-listing').hidden=false;
@@ -204,3 +205,48 @@ form.onsubmit = function(event) {
             }
     }
 };
+
+let updateButton = document.getElementById('dog-card-update-button');
+updateButton.onclick = function() {
+    // TODO сделать цикл по querySelectorAll
+    let hiddenSpanElements = document.querySelectorAll('.hidden-cell').hidden=true;
+    for (let i = 0; i < hiddenSpanElements.length; i++) {
+        hiddenSpanElements[i].hidden=true;
+    }
+    
+    let updateElements = document.querySelectorAll('.hidden-update-cell');
+    for (let i = 0; i < updateElements.length; i++) {
+        updateElements[i].hidden=false;
+    }
+
+    document.getElementById('name-update').value = document.getElementById('name-cell').textContent;
+    document.getElementById('name-cell').hidden=true;
+
+    if (document.getElementById('gender-cell').textContent === 'M') {
+        document.getElementById('gender-cell').hidden=true;
+        document.getElementById('gender-male-update').checked = true;
+    } else {
+        document.getElementById('gender-cell').hidden=true;
+        document.getElementById('gender-female-update').checked = true;
+    }
+
+    document.getElementById('age-update').value = document.getElementById('age-cell').textContent;
+    document.getElementById('age-cell').hidden=true;
+
+    if (document.getElementById('is-vaccinated-cell').textContent === 'Привит') {
+        document.getElementById('is-vaccinated-update').checked = true;
+    } else {
+        document.getElementById('is-vaccinated-update').checked = false;
+    }
+
+    document.getElementById('favorite-food-update').value = document.getElementById('favorite-food-cell').textContent;
+    document.getElementById('favorite-food-cell').hidden = true;
+
+    document.getElementById('photo-update').value = document.getElementById('dog-card-photo').src;
+    
+    document.getElementById('full-card-change').style.width = "30%";
+    document.getElementById('dog-card-change-style').style.flexDirection = "column";
+    Object.assign(document.querySelector('.dog-card-photo').style, {margin: "auto", borderRadius: "10%"});
+    Object.assign(document.getElementById('photo-update').style, {width: "fit-content", border: "1px solid black solid black", position: "relative", left: "110px", top: "-16px", height: "30px"});
+    Object.assign(document.getElementById('label-photo-change').style, {border: "1px solid black", padding: "8px 16px 8px 0", position: "relative", top: "21px", backgroundColor: "darkseagreen"});
+}

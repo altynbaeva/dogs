@@ -25,44 +25,66 @@
             </table>
         </main>
         <main id="dog-by-id" hidden="true">
-            <div class="full-card">
-                <div class="dog-card">
-                    <img id="dog-card-photo" class="dog-card-photo" src="#">
-                    <table class="dog-card-fields">
-                        <tr class="dog-card-row">
-                            <th>№ в списке</th>
-                            <td><span id="id-cell"></span></td>
-                        </tr>
-                        <tr class="dog-card-row">
-                            <th>Кличка</th>
-                            <td><span id="name-cell"></span></td>
-                        </tr>
-                        <tr class="dog-card-row">
-                            <th>Пол</th>
-                            <td><span id="gender-cell"></span></td>
-                        </tr>
-                        <tr class="dog-card-row">
-                            <th>Возраст</th>
-                            <td><span id="age-cell"></span></td>
-                        </tr>
-                        <tr class="dog-card-row">
-                            <th>Вакцинация</th>
-                            <td><span id="is-vaccinated-cell"></span></td>
-                        </tr>
-                        <tr class="dog-card-row">
-                            <th>Дата создания</th>
-                            <td><span id="created-at-cell"></span></td>
-                        </tr>
-                        <tr class="dog-card-row">
-                            <th>Дата обновления</th>
-                            <td><span id="updated-at-cell"></span></td>
-                        </tr>
-                        <tr class="dog-card-row">
-                            <th>Любимая еда</th>
-                            <td><span id="favorite-food-cell"></span></td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="full-card" id="full-card-change">
+                <form id = "update-dog-form" class="update-dog-form">
+                    <div class="dog-card" id="dog-card-change-style">
+                        <img id="dog-card-photo" class="dog-card-photo" src="#">
+                            <label for="photo-update" hidden="true" class="hidden-update-cell" id="label-photo-change">Фото собаки:</label>
+                            <input type="url" name="photoUpdate" id="photo-update" hidden="true" class="hidden-update-cell">
+                            <table class="dog-card-fields hidden-table">
+                                <tr class="dog-card-row">
+                                    <th>№ в списке</th>
+                                    <td><span id="id-cell"></span></td>
+                                </tr>
+                                <tr class="dog-card-row">
+                                    <th>Кличка</th>
+                                    <td>
+                                        <input type="text" name="name-update-cell" id="name-update" hidden="true" class="hidden-update-cell">
+                                        <span id="name-cell" class="hidden-cell"></span></td>
+                                </tr>
+                                <tr class="dog-card-row">
+                                    <th>Пол</th>
+                                    <td>
+                                        <input type="radio" name="gender-update-cell" value="M" id="gender-male-update" hidden="true" class="hidden-update-cell"><label for="gender-male-update" class="hidden-update-cell" hidden="true">М</label>
+                                        <input type="radio" name="gender-update-cell" value="Ж" id="gender-female-update" hidden="true" class="hidden-update-cell"><label for="gender-female-update" class="hidden-update-cell" hidden="true">Ж</label>
+                                        <span id="gender-cell" class="hidden-cell"></span></td>
+                                </tr>
+                                <tr class="dog-card-row">
+                                    <th>Возраст</th>
+                                    <td>
+                                        <input type="number" name="age-update-cell" id="age-update" min="1" max="50" step="1" hidden="true" class="hidden-update-cell">
+                                        <span id="age-cell" class="hidden-cell"></span></td>
+                                </tr>
+                                <tr class="dog-card-row">
+                                    <th>Вакцинация</th>
+                                    <td>
+                                        <input type="checkbox" name="is-vaccinated-update-cell" id="is-vaccinated-update" hidden="true" class="hidden-update-cell">
+                                        <span id="is-vaccinated-cell" class="hidden-cell"></span></td>
+                                </tr>
+                                <tr class="dog-card-row">
+                                    <th>Дата создания</th>
+                                    <td><span id="created-at-cell"></span></td>
+                                </tr>
+                                <tr class="dog-card-row">
+                                    <th>Дата обновления</th>
+                                    <td><span id="updated-at-cell"></span></td>
+                                </tr>
+                                <tr class="dog-card-row">
+                                    <th>Любимая еда</th>
+                                    <td>
+                                        <input type="text" name="favorite-food-update-cell" id="favorite-food-update" list="food-list-update" hidden="true" class="hidden-update-cell">
+                                            <datalist id="food-list-update">
+                                                <option value="Мясо"></option>
+                                                <option value="Сосиски"></option>
+                                                <option value="Рыба"></option>
+                                                <option value="Шашлык"></option>
+                                                <option value="Мороженое"></option>
+                                            </datalist>
+                                        <span id="favorite-food-cell" class="hidden-cell"></span></td>
+                                </tr>
+                            </table>
+                    </div>
+                </form>
                 <div class="div-for-buttons">
                     <button id="dog-card-return-button" class="return-button">Вернуться</button>
                     <button id="dog-card-update-button" class="update-button">Изменить</button>

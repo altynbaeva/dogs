@@ -154,12 +154,12 @@ body {
    padding: 8px;
 }
 
-label {
+.input-field label {
     padding: 8px 16px 8px 0;
     flex: 1;
 }
 
-input {
+.input-field input {
     padding: 8px;
     flex: 2;
 }
