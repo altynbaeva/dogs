@@ -30,7 +30,7 @@
                     <div class="dog-card" id="dog-card-change-style">
                         <img id="dog-card-photo" class="dog-card-photo" src="#">
                             <label for="photo-update" hidden="true" class="hidden-update-cell" id="label-photo-change">Фото собаки:</label>
-                            <input type="url" name="photoUpdate" id="photo-update" hidden="true" class="hidden-update-cell">
+                            <input type="url" name="photoUpdate" id="photo-update" hidden="true" class="hidden-update-cell" required>
                             <table class="dog-card-fields hidden-table">
                                 <tr class="dog-card-row">
                                     <th>№ в списке</th>
@@ -39,20 +39,20 @@
                                 <tr class="dog-card-row">
                                     <th>Кличка</th>
                                     <td>
-                                        <input type="text" name="name-update-cell" id="name-update" hidden="true" class="hidden-update-cell">
+                                        <input type="text" name="name-update-cell" id="name-update" hidden="true" class="hidden-update-cell" required>
                                         <span id="name-cell" class="hidden-cell"></span></td>
                                 </tr>
                                 <tr class="dog-card-row">
                                     <th>Пол</th>
                                     <td>
-                                        <input type="radio" name="gender-update-cell" value="M" id="gender-male-update" hidden="true" class="hidden-update-cell"><label for="gender-male-update" class="hidden-update-cell" hidden="true">М</label>
-                                        <input type="radio" name="gender-update-cell" value="Ж" id="gender-female-update" hidden="true" class="hidden-update-cell"><label for="gender-female-update" class="hidden-update-cell" hidden="true">Ж</label>
+                                        <input type="radio" name="gender-update-cell" value="M" id="gender-male-update" hidden="true" class="hidden-update-cell" required><label for="gender-male-update" class="hidden-update-cell" hidden="true">М</label>
+                                        <input type="radio" name="gender-update-cell" value="Ж" id="gender-female-update" hidden="true" class="hidden-update-cell" required><label for="gender-female-update" class="hidden-update-cell" hidden="true">Ж</label>
                                         <span id="gender-cell" class="hidden-cell"></span></td>
                                 </tr>
                                 <tr class="dog-card-row">
                                     <th>Возраст</th>
                                     <td>
-                                        <input type="number" name="age-update-cell" id="age-update" min="1" max="50" step="1" hidden="true" class="hidden-update-cell">
+                                        <input type="number" name="age-update-cell" id="age-update" min="1" max="50" step="1" hidden="true" class="hidden-update-cell" required>
                                         <span id="age-cell" class="hidden-cell"></span></td>
                                 </tr>
                                 <tr class="dog-card-row">
@@ -72,7 +72,7 @@
                                 <tr class="dog-card-row">
                                     <th>Любимая еда</th>
                                     <td>
-                                        <input type="text" name="favorite-food-update-cell" id="favorite-food-update" list="food-list-update" hidden="true" class="hidden-update-cell">
+                                        <input type="text" name="favorite-food-update-cell" id="favorite-food-update" list="food-list-update" hidden="true" class="hidden-update-cell" required>
                                             <datalist id="food-list-update">
                                                 <option value="Мясо"></option>
                                                 <option value="Сосиски"></option>
@@ -85,7 +85,7 @@
                             </table>
                     </div>
                 </form>
-                <div class="div-for-buttons">
+                <div class="div-for-buttons" id="div-for-buttons">
                     <button id="dog-card-return-button" class="return-button">Вернуться</button>
                     <button id="dog-card-update-button" class="update-button">Изменить</button>
                     <button id="dog-card-delete-button" class="delete-button">Удалить</button>

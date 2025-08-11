@@ -244,9 +244,63 @@ updateButton.onclick = function() {
 
     document.getElementById('photo-update').value = document.getElementById('dog-card-photo').src;
     
-    document.getElementById('full-card-change').style.width = "30%";
-    document.getElementById('dog-card-change-style').style.flexDirection = "column";
-    Object.assign(document.querySelector('.dog-card-photo').style, {margin: "auto", borderRadius: "10%"});
-    Object.assign(document.getElementById('photo-update').style, {width: "fit-content", border: "1px solid black solid black", position: "relative", left: "110px", top: "-16px", height: "30px"});
-    Object.assign(document.getElementById('label-photo-change').style, {border: "1px solid black", padding: "8px 16px 8px 0", position: "relative", top: "21px", backgroundColor: "darkseagreen"});
-}
+    document.getElementById('full-card-change').classList.add('full-card-width-change');
+    document.getElementById('dog-card-change-style').classList.add('change-div-dog-card');
+    document.getElementById('dog-card-photo').classList.add('change-style-dog-card-photo');
+    document.getElementById('label-photo-change').classList.add('change-label-photo');
+    document.getElementById('photo-update').classList.add('change-input-photo-update');
+    document.getElementById('div-for-buttons').classList.add('change-buttons-div');
+    document.getElementById('dog-card-delete-button').classList.add('change-delete-button');
+
+    document.getElementById('dog-card-update-button').remove();
+    let newSaveButton = document.createElement('button');
+    newSaveButton.classList.add('save-button');
+    newSaveButton.id = 'dog-card-save-button';
+    newSaveButton.textContent = 'Сохранить';
+    let parentDivForButtons = document.getElementById('update-dog-form');
+    parentDivForButtons.append(newSaveButton);
+};
+
+const updateForm = document.getElementById("update-dog-form");
+updateForm.onsubmit = function(event) {
+    event.preventDefault();
+    const updateForm = document.getElementById("update-dog-form");
+    let formData = new FormData(updateForm);
+    let requestBody = {};
+    requestBody.name = formData.get('name-update-cell');
+    requestBody.gender = formData.get('gender-update-cell');
+    requestBody.age = Number(formData.get('age-update-cell'));
+    if (formData.get('is-vaccinated-update-cell') === 'on') {
+        requestBody.isVaccinated = true
+    }   else {
+        requestBody.isVaccinated = false
+    }
+    requestBody.photoURL = formData.get('photoUpdate');
+    let favFoodArr = document.getElementById('favorite-food-update').value.split(',');
+    let personality = {
+        favoriteFood: favFoodArr
+    };
+    requestBody.personality = personality;
+    console.log(requestBody);
+
+    let xhrUpdateDog = new XMLHttpRequest();
+    xhrUpdateDog.open('PUT', 'http://localhost:8080/api/v1/dogs/' + document.getElementById("id-cell").textContent);
+    xhrUpdateDog.send(JSON.stringify(requestBody));
+    xhrUpdateDog.onerror = function() {
+        alert('Сохранение не удалось: не удалось отправить запрос')
+    }
+    xhrUpdateDog.onload = function() {
+        if (xhrUpdateDog.status === 200) {
+                document.getElementById('dog-by-id').hidden=true;
+                drawListing();
+                document.getElementById('dogs-listing').hidden=false;
+            
+        }   else {
+                alert('Создание не удалось: http code != 200')
+            }
+    }
+};
+
+
+
+

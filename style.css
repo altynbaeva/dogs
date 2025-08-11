@@ -107,6 +107,20 @@ body {
     height: 60px;
     justify-content: space-between;
     border-radius: 10%;
+    position: relative;
+    bottom: -5px;
+}
+
+.change-buttons-div {
+    box-shadow: none;
+    justify-content: initial;
+    bottom: 20px;
+    margin-left: 80px;
+    margin-right: 0;
+}
+
+.change-delete-button {
+    margin-left: 15px;
 }
 
 .return-button {
@@ -131,6 +145,25 @@ body {
     transition: .2s linear;
     background-color:red;
     width: 30%;
+}
+
+.save-button {
+    border-radius: 10px;
+    color: white;
+    transition: .2s linear;
+    background-color: #3C82F8;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    left: 210px;
+    bottom: -40px;
+    margin-left: 60px;
+}
+
+#dog-card-save-button:hover {
+    -webkit-transform: rotateZ(5deg);
+    -ms-transform: rotateZ(5deg);
+    transform: rotateZ(5deg);
 }
 
 .div-for-buttons button:hover {
@@ -173,5 +206,35 @@ body {
 
 .send-dog-button:hover {
     box-shadow: #003CC5 0 0px 0px 40px inset;
+}
+
+.full-card-width-change {
+    width: 30%;
+}
+
+.change-div-dog-card {
+    flex-direction: column;
+}
+
+.change-style-dog-card-photo {
+    margin: auto;
+    border-radius: 10%;
+}
+
+.change-label-photo {
+    border: 1px solid black;
+    padding: 8px 16px 8px 0;
+    position: relative;
+    top: 21px;
+    background-color: darkseagreen;
+}
+
+.change-input-photo-update {
+    width: fit-content;
+    border: 1px solid black;
+    position: relative;
+    left: 110px;
+    top: -16px;
+    height: 30px;
 }
 
