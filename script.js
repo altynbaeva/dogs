@@ -291,15 +291,63 @@ updateForm.onsubmit = function(event) {
     }
     xhrUpdateDog.onload = function() {
         if (xhrUpdateDog.status === 200) {
-                document.getElementById('dog-by-id').hidden=true;
-                drawListing();
-                document.getElementById('dogs-listing').hidden=false;
+            drawListing();
+
+                let updateElements = document.querySelectorAll('.hidden-update-cell');
+                for (let i = 0; i < updateElements.length; i++) {
+                    updateElements[i].hidden=true;
+                }
+                let hiddenSpanElements = document.querySelectorAll('.hidden-cell');
+                for (let i = 0; i < hiddenSpanElements.length; i++) {
+                    hiddenSpanElements[i].hidden=false;
+                }   
+
+                document.getElementById('name-cell').textContent = document.getElementById('name-update').value;
+                document.getElementById('name-update').hidden=true;
+
+                if (document.getElementById('gender-update-cell').value === 'М') {
+                    document.getElementById('gender-cell').hidden=false;
+                    document.getElementById('gender-cell').textContent = 'М';
+                } else {
+                    document.getElementById('gender-cell').hidden=false;
+                    document.getElementById('gender-cell').textContent = 'Ж';
+                }
+
+                document.getElementById('age-cell').textContent = document.getElementById('age-update').value;
+                document.getElementById('age-update').hidden=true;
+
+                if (document.getElementById('is-vaccinated-update').value === 'Привит') {
+                    document.getElementById('is-vaccinated-cell').checked = true;
+                } else {
+                    document.getElementById('is-vaccinated-cell').checked = false;
+                }
+
+                document.getElementById('favorite-food-cell').textContent = document.getElementById('favorite-food-update').value;
+                document.getElementById('favorite-food-update').hidden = true;
+
+                document.getElementById('dog-card-photo').src = document.getElementById('photo-update').value;
+
+
+                document.getElementById('full-card-change').classList.remove('full-card-width-change');
+                document.getElementById('dog-card-change-style').classList.remove('change-div-dog-card');
+                document.getElementById('dog-card-photo').classList.remove('change-style-dog-card-photo');
+                document.getElementById('label-photo-change').classList.remove('change-label-photo');
+                document.getElementById('photo-update').classList.remove('change-input-photo-update');
+                document.getElementById('div-for-buttons').classList.remove('change-buttons-div');
+                document.getElementById('dog-card-delete-button').classList.remove('change-delete-button');
+
+                document.getElementById('dog-card-save-button').remove();
+                let parentDivForButtons = document.getElementById('div-for-buttons');
+                parentDivForButtons.append(updateButton);
+
+                
             
         }   else {
                 alert('Создание не удалось: http code != 200')
             }
     }
 };
+
 
 
 
