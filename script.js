@@ -238,6 +238,7 @@ updateButton.onclick = function() {
     } else {
         document.getElementById('is-vaccinated-update').checked = false;
     }
+    document.getElementById('is-vaccinated-cell').hidden=true;
 
     document.getElementById('favorite-food-update').value = document.getElementById('favorite-food-cell').textContent;
     document.getElementById('favorite-food-cell').hidden = true;
@@ -305,7 +306,7 @@ updateForm.onsubmit = function(event) {
                 document.getElementById('name-cell').textContent = document.getElementById('name-update').value;
                 document.getElementById('name-update').hidden=true;
 
-                if (document.getElementById('gender-update-cell').value === 'М') {
+                if (document.getElementById('gender-male-update').checked) {
                     document.getElementById('gender-cell').hidden=false;
                     document.getElementById('gender-cell').textContent = 'М';
                 } else {
@@ -316,10 +317,10 @@ updateForm.onsubmit = function(event) {
                 document.getElementById('age-cell').textContent = document.getElementById('age-update').value;
                 document.getElementById('age-update').hidden=true;
 
-                if (document.getElementById('is-vaccinated-update').value === 'Привит') {
-                    document.getElementById('is-vaccinated-cell').checked = true;
+                if (document.getElementById('is-vaccinated-update').checked) {
+                    document.getElementById('is-vaccinated-cell').textContent = 'Привит';
                 } else {
-                    document.getElementById('is-vaccinated-cell').checked = false;
+                    document.getElementById('is-vaccinated-cell').textContent = 'Не привит';
                 }
 
                 document.getElementById('favorite-food-cell').textContent = document.getElementById('favorite-food-update').value;
