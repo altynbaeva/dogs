@@ -81,6 +81,28 @@ function drawListing() {
                                 
                                     // проставляем значения в карточку
                                     // TODO писать не в ячейку, а в вложенный элемент p?
+
+                                    let updateElements = document.querySelectorAll('.hidden-update-cell');
+                                    for (let i = 0; i < updateElements.length; i++) {
+                                        updateElements[i].hidden=true;
+                                    }
+                                    let hiddenSpanElements = document.querySelectorAll('.hidden-cell');
+                                    for (let i = 0; i < hiddenSpanElements.length; i++) {
+                                        hiddenSpanElements[i].hidden=false;
+                                    }   
+
+                                    document.getElementById('full-card-change').classList.remove('full-card-width-change');
+                                    document.getElementById('dog-card-change-style').classList.remove('change-div-dog-card');
+                                    document.getElementById('dog-card-photo').classList.remove('change-style-dog-card-photo');
+                                    document.getElementById('label-photo-change').classList.remove('change-label-photo');
+                                    document.getElementById('photo-update').classList.remove('change-input-photo-update');
+                                    document.getElementById('div-for-buttons').classList.remove('change-buttons-div');
+                                    document.getElementById('dog-card-delete-button').classList.remove('change-delete-button');
+
+                                    let parentDivForButtons = document.getElementById('div-for-buttons');
+                                    parentDivForButtons.append(updateButton);
+
+
                                     document.getElementById("dog-card-photo").src = dogCard.photoURL;
                                     document.getElementById("id-cell").textContent = dogCard.id;
                                     document.getElementById("name-cell").textContent = dogCard.name;
@@ -104,6 +126,8 @@ function drawListing() {
                                     // отображаем карточку
                                     document.getElementById("dogs-listing").hidden=true;
                                     document.getElementById("dog-by-id").hidden=false;
+                                    
+                                    document.getElementById('dog-card-save-button').remove();
                                 } else {
                                     alert("Запрос собаки не удался: http code != 200"); 
                                 }
@@ -218,7 +242,7 @@ updateButton.onclick = function() {
     for (let i = 0; i < updateElements.length; i++) {
         updateElements[i].hidden=false;
     }
-
+    
     document.getElementById('name-update').value = document.getElementById('name-cell').textContent;
     document.getElementById('name-cell').hidden=true;
 
