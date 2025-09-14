@@ -80,7 +80,6 @@ function drawListing() {
                                     let dogCard = JSON.parse(xhrDogById.responseText);
                                 
                                     // проставляем значения в карточку
-                                    // TODO писать не в ячейку, а в вложенный элемент p?
 
                                     let updateElements = document.querySelectorAll('.hidden-update-cell');
                                     for (let i = 0; i < updateElements.length; i++) {
@@ -120,13 +119,13 @@ function drawListing() {
                                     } else {
                                         document.getElementById("updated-at-cell").textContent = dogCard.updatedAt
                                     }
-                                    // TODO в столбик
                                     document.getElementById("favorite-food-cell").textContent = dogCard.personality.favoriteFood.join(','); 
 
                                     // отображаем карточку
                                     document.getElementById("dogs-listing").hidden=true;
                                     document.getElementById("dog-by-id").hidden=false;
                                     
+                                    // TODO возвращает ошибку, когда заходим в карточку впервые
                                     document.getElementById('dog-card-save-button').remove();
                                 } else {
                                     alert("Запрос собаки не удался: http code != 200"); 
@@ -155,6 +154,7 @@ drawListing();
 
 let returnButton = document.getElementById("dog-card-return-button");
 returnButton.onclick = function() {
+    drawListing();
     document.getElementById("dog-by-id").hidden=true;
     document.getElementById("dogs-listing").hidden=false;
 };
@@ -232,7 +232,6 @@ form.onsubmit = function(event) {
 
 let updateButton = document.getElementById('dog-card-update-button');
 updateButton.onclick = function() {
-    // TODO сделать цикл по querySelectorAll
     let hiddenSpanElements = document.querySelectorAll('.hidden-cell').hidden=true;
     for (let i = 0; i < hiddenSpanElements.length; i++) {
         hiddenSpanElements[i].hidden=true;
@@ -316,8 +315,7 @@ updateForm.onsubmit = function(event) {
     }
     xhrUpdateDog.onload = function() {
         if (xhrUpdateDog.status === 200) {
-            drawListing();
-
+                // TODO не нужно drawListing(); а перерисовать карточку на основе данных в ответе на PUT запрос
                 let updateElements = document.querySelectorAll('.hidden-update-cell');
                 for (let i = 0; i < updateElements.length; i++) {
                     updateElements[i].hidden=true;
@@ -364,9 +362,6 @@ updateForm.onsubmit = function(event) {
                 document.getElementById('dog-card-save-button').remove();
                 let parentDivForButtons = document.getElementById('div-for-buttons');
                 parentDivForButtons.append(updateButton);
-
-                
-            
         }   else {
                 alert('Создание не удалось: http code != 200')
             }

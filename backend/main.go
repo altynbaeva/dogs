@@ -176,6 +176,10 @@ func handleCreateDogRequest(writer http.ResponseWriter, request *http.Request) {
 		return
 	}
 
+	if len(req.Personality.FavoriteFood) == 0 {
+		req.Personality.FavoriteFood = []string{}
+	}
+
 	newDog := DogFull{
 		Dog: Dog{
 			Id:           nextDogId,
